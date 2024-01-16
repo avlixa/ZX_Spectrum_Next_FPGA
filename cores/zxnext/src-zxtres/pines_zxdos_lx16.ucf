@@ -188,7 +188,7 @@ NET "flash_miso_i"      LOC="P10" | IOSTANDARD = LVCMOS33 | PULLUP;
 NET "JOY_CLK"         LOC="R12"  | IOSTANDARD = LVCMOS33; 
 NET "JOY_LOAD"        LOC="T12"  | IOSTANDARD = LVCMOS33;
 NET "JOY_DATA"        LOC="T13"  | IOSTANDARD = LVCMOS33;
-NET "joy_select"      LOC=""  | IOSTANDARD = LVCMOS33;
+#NET "joy_select"      LOC=""  | IOSTANDARD = LVCMOS33;
 
 #NET 'joyp1_i'           LOC=''   | IOSTANDARD = LVTTL; #| PULLUP;
 #NET 'joyp2_i'           LOC=''   | IOSTANDARD = LVTTL; #| PULLUP;

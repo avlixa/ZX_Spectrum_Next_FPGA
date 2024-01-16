@@ -395,3 +395,4 @@ always @(posedge CLK)
         ff_icap_wr  <= icap_wr;
    end       
 endmodule
+`default_nettype wire

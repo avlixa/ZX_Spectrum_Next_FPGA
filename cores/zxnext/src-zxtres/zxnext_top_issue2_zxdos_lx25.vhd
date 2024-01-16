@@ -31,6 +31,7 @@ use ieee.std_logic_unsigned.all;
 library UNISIM;
 use UNISIM.VComponents.all;
 
+
 entity zxnext_top_issue2_zxdos_lx25_2M is
    generic (
       --g_machine_id      : unsigned(7 downto 0)  := X"0A";   -- X"0A" = ZX Spectrum Next, X"FA" = Anti Brick (reset disabled, bootrom)
@@ -39,6 +40,8 @@ entity zxnext_top_issue2_zxdos_lx25_2M is
       g_version         : unsigned(7 downto 0)  := X"32";   -- 3.02
       g_sub_version     : unsigned(7 downto 0)  := X"01";   -- .01
       g_board_issue     : unsigned(3 downto 0)  := X"0";    -- issue 2 (see nextreg 0x0F)
+      --g_video_inc       : unsigned(1 downto 0)  := "10"     -- bit 1 = 1 to include HDMI module, bit 0 = 1 to include VGA module (if changed see zxnext_pins_issue2.ucf)
+      g_video_inc       : unsigned(1 downto 0)  := "01";     -- bit 1 = 1 to include HDMI module, bit 0 = 1 to include VGA module (if changed see zxnext_pins_issue2.ucf)
       g_memory          : unsigned(7 downto 0)  := X"05"    -- 01 - 4Mb (2Mb 16bit) use 2M 8bit lower
                                                             -- 02 - 1Mb (512k 16bit) use 1M
                                                             -- 03 - 4Mb (2Mb 16bit) use 2M 8bit upper -- use for RPI0
@@ -1192,25 +1195,25 @@ begin
          end if;
       end process;
 
- --     BUFGMUX1_i0 : BUFGMUX_1
- --     port map
- --     (
- --        I0 => clk_3m5_cont,
- --        I1 => CLK_7,
- --        S => zxn_cpu_speed(0),
- --        O => CLK_i0
- --     );
+      BUFGMUX1_i0 : BUFGMUX_1
+      port map
+      (
+         I0 => clk_3m5_cont,
+         I1 => CLK_7,
+         S => zxn_cpu_speed(0),
+         O => CLK_i0
+      );
 
- --     BUFGMUX1_i1 : BUFGMUX_1
- --     port map
- --     (
- --        I0 => CLK_14,
- --        I1 => CLK_28,
- --        S => zxn_cpu_speed(0),
- --        O => CLK_i1
- --     );
-   CLK_i0 <= CLK_7  when zxn_cpu_speed(0) = '1' else CLK_3M5_CONT;
-   CLK_i1 <= CLK_28 when zxn_cpu_speed(0) = '1' else CLK_14;
+      BUFGMUX1_i1 : BUFGMUX_1
+      port map
+      (
+         I0 => CLK_14,
+         I1 => CLK_28,
+         S => zxn_cpu_speed(0),
+         O => CLK_i1
+      );
+--   CLK_i0 <= CLK_7  when zxn_cpu_speed(0) = '1' else CLK_3M5_CONT;
+--   CLK_i1 <= CLK_28 when zxn_cpu_speed(0) = '1' else CLK_14;
 
    
       BUFGMUX1_i2 : BUFGMUX_1
