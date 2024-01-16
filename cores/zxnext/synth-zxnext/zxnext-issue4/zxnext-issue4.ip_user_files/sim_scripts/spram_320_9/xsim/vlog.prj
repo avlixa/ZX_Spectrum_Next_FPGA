@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../ip/spram_320_9/sim/spram_320_9.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

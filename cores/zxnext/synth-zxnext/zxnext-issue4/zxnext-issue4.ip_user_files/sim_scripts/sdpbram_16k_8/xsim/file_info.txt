@@ -1,0 +1,2 @@
+sdpbram_16k_8.v,verilog,xil_defaultlib,../../../ip/sdpbram_16k_8/sim/sdpbram_16k_8.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

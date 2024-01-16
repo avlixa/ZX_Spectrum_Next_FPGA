@@ -1,0 +1,2 @@
+keyjoy_sdpram_64_6.v,verilog,xil_defaultlib,../../../ip/keyjoy_sdpram_64_6/sim/keyjoy_sdpram_64_6.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

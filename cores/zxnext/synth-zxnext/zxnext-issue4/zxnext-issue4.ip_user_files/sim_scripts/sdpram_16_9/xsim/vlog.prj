@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../ip/sdpram_16_9/sim/sdpram_16_9.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
