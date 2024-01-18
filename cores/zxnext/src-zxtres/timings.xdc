@@ -1,13 +1,13 @@
 #create_property iob port -type string
 
 # Contraints de tiempo
-create_clock -period 20.000 -name CLK50 [get_ports CLK50]
+create_clock -period 20.000 -name clock_50_i [get_ports clock_50_i]
 
 
-set_clock_groups -asynchronous -group [get_clocks CLK50] 
-set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins CLK0OUT CLK1OUT]]    
-set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins CLK2OUT]] -group [get_clocks -of_objects [get_pins CLK3OUT]]
-set_clock_groups -asynchronous  -group [get_clocks -of_objects [get_pins CLK4OUT CLK5OUT]]
+set_clock_groups -asynchronous -group [get_clocks clock_50_i] 
+#set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins CLK0OUT CLK1OUT]]    
+#set_clock_groups -asynchronous -group [get_clocks -of_objects [get_pins CLK2OUT]] -group [get_clocks -of_objects [get_pins CLK3OUT]]
+#set_clock_groups -asynchronous  -group [get_clocks -of_objects [get_pins CLK4OUT CLK5OUT]]
 
 
 #set_property IOB TRUE [all_inputs]

@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="61" Path="/home/avlixa/FPGA/ZX_Spectrum_Next_FPGA/cores/zxnext/synth-zxnext/zxtres/zxtres.xpr">
+<Project Version="7" Minor="61" Path="/home/avlixa/FPGA/ZX_Spectrum_Next_FPGA/cores/zxnext/synth-zxnext/zxnext-zxtres/zxnext-zxtres.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="81a326eecc4145dd928cb193879db930"/>
+    <Option Name="Id" Val="b548225222794e8ebeb9dcc8998a1fa0"/>
     <Option Name="Part" Val="xc7a15tcsg324-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -641,35 +641,35 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/sdpbram_16k_8.xcix">
+      <File Path="$PPRDIR/../zxtres/zxtres.srcs/sources_1/ip/sdpbram_16k_8.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/sdpram_64_9.xcix">
+      <File Path="$PPRDIR/../zxtres/zxtres.srcs/sources_1/ip/sdpram_64_9.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/sdpram_128_8.xcix">
+      <File Path="$PPRDIR/../zxtres/zxtres.srcs/sources_1/ip/sdpram_128_8.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/sdpram_16_9.xcix">
+      <File Path="$PPRDIR/../zxtres/zxtres.srcs/sources_1/ip/sdpram_16_9.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/spram_320_9.xcix">
+      <File Path="$PPRDIR/../zxtres/zxtres.srcs/sources_1/ip/spram_320_9.xcix">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -716,11 +716,10 @@
       <Filter Type="Utils"/>
       <File Path="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/zxnext_top_issue4_zxtres.dcp">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_1/synth_a35t/zxnext_top_issue4_zxtres.dcp"/>
+          <Attr Name="ImportTime" Val="1705349972"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedInSteps" Val="synth_a100t"/>
-          <Attr Name="UsedInSteps" Val="synth_a200t"/>
-          <Attr Name="UsedInSteps" Val="synth_a35t"/>
           <Attr Name="AutoDcp" Val="1"/>
         </FileInfo>
       </File>
@@ -729,15 +728,13 @@
       </Config>
     </FileSet>
     <FileSet Name="constrs_zx3" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_zx3">
-      <File Path="$PSRCDIR/constrs_zxtres/imports/src/timings.xdc">
+      <File Path="$PPRDIR/../../src-zxtres/pines_a35t.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../src-zxtres/timings.xdc"/>
-          <Attr Name="ImportTime" Val="1705257579"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../src-zxtres/pines_a35t.xdc">
+      <File Path="$PPRDIR/../../src-zxtres/timings.xdc">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -770,7 +767,7 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="19">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a15tcsg324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a15tcsg324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_1" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
@@ -779,7 +776,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="synth_a35t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a35tfgg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/zxnext_top_issue4_zxtres.dcp" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_a35t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_a35t">
+    <Run Id="synth_a35t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a35tfgg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_a35t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_a35t">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
@@ -797,11 +794,9 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="synth_a100t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a100tfgg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/zxnext_top_issue4_zxtres.dcp" WriteIncrSynthDcp="false" Dir="$PRUNDIR/synth_a100t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/synth_a100t" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_a100t">
+    <Run Id="synth_a100t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a100tfgg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/synth_a100t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_a100t">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -817,27 +812,19 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="synth_a200t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a200tfbg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/zxnext_top_issue4_zxtres.dcp" WriteIncrSynthDcp="false" Dir="$PRUNDIR/synth_a200t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t/synth_a100t/synth_a200t" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_a200t">
+    <Run Id="synth_a200t" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7a200tfbg484-2" ConstrsSet="constrs_zx3" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/synth_a200t" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1/synth_a35t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/synth_a200t">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2022">
           <Desc>Vivado Synthesis Defaults</Desc>
         </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019" CtrlBit="true">
-        <ReportConfig DisplayName="synthesis_report" Name="synth_a200t_synth_synthesis_report_0" Spec="" RunStep="synth_design" ReportFile="zxnext_top_issue4_zxtres.vds">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Utilization - Synth Design" Name="synth_a200t_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" ReportFile="zxnext_top_issue4_zxtres_utilization_synth.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_utilization_synth.pb"/>
-        </ReportConfig>
-      </ReportStrategy>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a15tcsg324-1" ConstrsSet="constrs_1" Description="Similar to Performance_ExplorePostRoutePhysOpt, but enables logic optimization step (opt_design) with the ExploreWithRemap directive." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7a15tcsg324-1" ConstrsSet="constrs_1" Description="Similar to Performance_ExplorePostRoutePhysOpt, but enables logic optimization step (opt_design) with the ExploreWithRemap directive." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Performance_ExploreWithRemap" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
@@ -985,7 +972,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_a35t" Type="Ft2:EntireDesign" Part="xc7a35tfgg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_a35t" SynthRun="synth_a35t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t">
+    <Run Id="impl_a35t" Type="Ft2:EntireDesign" Part="xc7a35tfgg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/impl_a35t" SynthRun="synth_a35t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Congestion_SSI_SpreadLogic_high" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
@@ -1002,18 +989,18 @@
           <Option Id="Directive">7</Option>
         </Step>
         <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <Step Id="write_bitstream">
+          <Option Id="BinFile">1</Option>
+        </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_a100t" Type="Ft2:EntireDesign" Part="xc7a100tfgg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/impl_a100t" SynthRun="synth_a100t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t/impl_a100t" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t/impl_a100t">
+    <Run Id="impl_a100t" Type="Ft2:EntireDesign" Part="xc7a100tfgg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/impl_a100t" SynthRun="synth_a100t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t/impl_a100t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t/impl_a100t">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Congestion_SSI_SpreadLogic_high" Flow="Vivado Implementation 2022">
-          <Desc>Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)</Desc>
-        </StratHandle>
+        <StratHandle Name="Congestion_SSI_SpreadLogic_high" Flow="Vivado Implementation 2022"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -1028,7 +1015,9 @@
           <Option Id="Directive">7</Option>
         </Step>
         <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <Step Id="write_bitstream">
+          <Option Id="BinFile">1</Option>
+        </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022" CtrlBit="true">
@@ -1150,7 +1139,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="impl_a200t" Type="Ft2:EntireDesign" Part="xc7a200tfbg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/impl_a200t" SynthRun="synth_a200t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t/impl_a200t" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1/impl_a35t/impl_a200t">
+    <Run Id="impl_a200t" Type="Ft2:EntireDesign" Part="xc7a200tfbg484-2" ConstrsSet="constrs_zx3" Description="Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/impl_a200t" SynthRun="synth_a200t" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t/impl_a200t" AutoRQSDir="$PPRDIR/../zxtres/zxtres.srcs/utils_1/imports/impl_1/impl_a35t/impl_a200t">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Congestion_SSI_SpreadLogic_high" Flow="Vivado Implementation 2022">
           <Desc>Spread logic throughout SSI device to avoid creating congested regions. (high setting: highest degree of spreading)</Desc>
@@ -1169,125 +1158,12 @@
           <Option Id="Directive">7</Option>
         </Step>
         <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <Step Id="write_bitstream">
+          <Option Id="BinFile">1</Option>
+        </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022" CtrlBit="true">
-        <ReportConfig DisplayName="Timing Summary - Design Initialization" Name="impl_a200t_init_report_timing_summary_0" Spec="report_timing_summary" RunStep="init_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="DRC - Opt Design" Name="impl_a200t_opt_report_drc_0" Spec="report_drc" RunStep="opt_design" ReportFile="zxnext_top_issue4_zxtres_drc_opted.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_drc_opted.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_drc_opted.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Opt Design" Name="impl_a200t_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="opt_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Power Opt Design" Name="impl_a200t_power_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="power_opt_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="IO - Place Design" Name="impl_a200t_place_report_io_0" Spec="report_io" RunStep="place_design" ReportFile="zxnext_top_issue4_zxtres_io_placed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Utilization - Place Design" Name="impl_a200t_place_report_utilization_0" Spec="report_utilization" RunStep="place_design" ReportFile="zxnext_top_issue4_zxtres_utilization_placed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_utilization_placed.pb"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Control Sets - Place Design" Name="impl_a200t_place_report_control_sets_0" Spec="report_control_sets" RunStep="place_design" ReportFile="zxnext_top_issue4_zxtres_control_sets_placed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="verbose" Type="" Value="true"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Incremental Reuse - Place Design" Name="impl_a200t_place_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="place_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Incremental Reuse - Place Design" Name="impl_a200t_place_report_incremental_reuse_1" Spec="report_incremental_reuse" RunStep="place_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Place Design" Name="impl_a200t_place_report_timing_summary_0" Spec="report_timing_summary" RunStep="place_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Post-Place Power Opt Design" Name="impl_a200t_post_place_power_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="post_place_power_opt_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Post-Place Phys Opt Design" Name="impl_a200t_phys_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="phys_opt_design" Version="1" Minor="0" IsDisabled="true">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="implementation_log" Name="impl_a200t_route_implementation_log_0" Spec="" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres.vdi">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="DRC - Route Design" Name="impl_a200t_route_report_drc_0" Spec="report_drc" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_drc_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_drc_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_drc_routed.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Methodology - Route Design" Name="impl_a200t_route_report_methodology_0" Spec="report_methodology" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_methodology_drc_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_methodology_drc_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_methodology_drc_routed.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Power - Route Design" Name="impl_a200t_route_report_power_0" Spec="report_power" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_power_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_power_summary_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_power_routed.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Route Status - Route Design" Name="impl_a200t_route_report_route_status_0" Spec="report_route_status" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_route_status.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_route_status.pb"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Route Design" Name="impl_a200t_route_report_timing_summary_0" Spec="report_timing_summary" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_timing_summary_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_timing_summary_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_timing_summary_routed.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Incremental Reuse - Route Design" Name="impl_a200t_route_report_incremental_reuse_0" Spec="report_incremental_reuse" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_incremental_reuse_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Clock Utilization - Route Design" Name="impl_a200t_route_report_clock_utilization_0" Spec="report_clock_utilization" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_clock_utilization_routed.rpt" Version="1" Minor="0">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Bus Skew - Route Design" Name="impl_a200t_route_report_bus_skew_0" Spec="report_bus_skew" RunStep="route_design" ReportFile="zxnext_top_issue4_zxtres_bus_skew_routed.rpt" Version="1" Minor="1">
-          <ReportConfigOption Name="warn_on_violation" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value="zxnext_top_issue4_zxtres_bus_skew_routed.pb"/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value="zxnext_top_issue4_zxtres_bus_skew_routed.rpx"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Timing Summary - Post-Route Phys Opt Design" Name="impl_a200t_post_route_phys_opt_report_timing_summary_0" Spec="report_timing_summary" RunStep="post_route_phys_opt_design" Version="1" Minor="0">
-          <ReportConfigOption Name="max_paths" Type="" Value="10"/>
-          <ReportConfigOption Name="report_unconstrained" Type="" Value="true"/>
-          <ReportConfigOption Name="warn_on_violation" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="Bus Skew - Post-Route Phys Opt Design" Name="impl_a200t_post_route_phys_opt_report_bus_skew_0" Spec="report_bus_skew" RunStep="post_route_phys_opt_design" Version="1" Minor="1">
-          <ReportConfigOption Name="warn_on_violation" Type="" Value="true"/>
-          <ReportConfigOutputOption Name="pb" Type="string" Value=""/>
-          <ReportConfigOutputOption Name="rpx" Type="string" Value=""/>
-        </ReportConfig>
-        <ReportConfig DisplayName="report_webtalk" Name="impl_a200t_bitstream_report_webtalk_0" Spec="" RunStep="write_bitstream" ReportFile="usage_statistics_webtalk.html">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-        <ReportConfig DisplayName="implementation_log" Name="impl_a200t_bitstream_implementation_log_0" Spec="" RunStep="write_bitstream" ReportFile="zxnext_top_issue4_zxtres.vdi">
-          <ReportConfigOption Name="dummy_option" Type="string"/>
-        </ReportConfig>
-      </ReportStrategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2022"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>

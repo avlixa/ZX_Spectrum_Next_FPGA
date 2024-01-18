@@ -3,12 +3,10 @@
 set_property -dict {PACKAGE_PIN Y18 IOSTANDARD LVCMOS33} [get_ports clock_50_i]
 
 #Leds y Botones
-#set_property -dict {PACKAGE_PIN H13 IOSTANDARD LVCMOS33} [get_ports LED1]
-#set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33} [get_ports LED2]
-#set_property PACKAGE_PIN G15 [get_ports LED2] #compartido BTN
-#set_property IOSTANDARD LVCMOS33 [get_ports LED2]
-#set_property PACKAGE_PIN G15 [get_ports BTN] #compartido LED
-#set_property IOSTANDARD LVCMOS33 [get_ports BTN]
+set_property -dict {PACKAGE_PIN H13 IOSTANDARD LVCMOS33} [get_ports LED1]
+set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33} [get_ports LED2]
+#set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33} [get_ports LED2] #compartido BTN
+#set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33} [get_ports BTN] #compartido LED
 #set_property PULLUP true [get_ports BTN]
 
 #Keyboard and mouse
@@ -52,12 +50,9 @@ set_property -dict {PACKAGE_PIN W17 IOSTANDARD LVCMOS33} [get_ports rgb_r_o[7]]
 
 
 #Audio
-set_property PACKAGE_PIN V19 [get_ports audioext_l_o]
-set_property IOSTANDARD LVCMOS33 [get_ports audioext_l_o]
-set_property PACKAGE_PIN U17 [get_ports audioext_r_o]
-set_property IOSTANDARD LVCMOS33 [get_ports audioext_r_o]
-set_property PACKAGE_PIN B1 [get_ports ear_port_i]
-set_property IOSTANDARD LVCMOS33 [get_ports ear_port_i]
+set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports audioext_l_o]
+set_property -dict {PACKAGE_PIN U17 IOSTANDARD LVCMOS33} [get_ports audioext_r_o]
+set_property -dict {PACKAGE_PIN B1 IOSTANDARD LVCMOS33}  [get_ports ear_port_i]
 
 set_property -dict {PACKAGE_PIN V9 IOSTANDARD LVCMOS33} [get_ports i2s_bclk_o]
 set_property -dict {PACKAGE_PIN U7 IOSTANDARD LVCMOS33} [get_ports i2s_lrclk_o]
@@ -71,7 +66,7 @@ set_property -dict {PACKAGE_PIN W2 IOSTANDARD LVCMOS33} [get_ports joy_data]
 set_property -dict {PACKAGE_PIN V2 IOSTANDARD LVCMOS33} [get_ports joy_clk]
 
 
-#JAMMA
+##JAMMA
 #set_property PACKAGE_PIN AB5 [get_ports jamma_clk]
 #set_property IOSTANDARD LVCMOS33 [get_ports jamma_clk]
 #set_property PACKAGE_PIN AA4 [get_ports jamma_load_n]
@@ -132,14 +127,14 @@ set_property -dict {PACKAGE_PIN M6 IOSTANDARD LVCMOS33} [get_ports sd_sclk_o]
 set_property -dict {PACKAGE_PIN L5 IOSTANDARD LVCMOS33} [get_ports sd_cs0_n_o]
 
 
-#Flash SPI
-set_property -dict {PACKAGE_PIN T19 IOSTANDARD LVCMOS33} [get_ports flash_cs_n_o]
-                                #L12/T4
-set_property -dict {PACKAGE_PIN T4 IOSTANDARD LVCMOS33} [get_ports flash_sclk_o] 
-set_property -dict {PACKAGE_PIN P22 IOSTANDARD LVCMOS33} [get_ports flash_mosi_o]
-set_property -dict {PACKAGE_PIN R22 IOSTANDARD LVCMOS33 PULLUP true} [get_ports flash_miso_i]
-set_property -dict {PACKAGE_PIN P21 IOSTANDARD LVCMOS33} [get_ports flash_wp_o ]
-set_property -dict {PACKAGE_PIN R21 IOSTANDARD LVCMOS33} [get_ports flash_hold_o]
+##Flash SPI
+#set_property -dict {PACKAGE_PIN T19 IOSTANDARD LVCMOS33} [get_ports flash_cs_n_o]
+#                                #L12/T4
+#set_property -dict {PACKAGE_PIN T4 IOSTANDARD LVCMOS33} [get_ports flash_sclk_o] 
+#set_property -dict {PACKAGE_PIN P22 IOSTANDARD LVCMOS33} [get_ports flash_mosi_o]
+#set_property -dict {PACKAGE_PIN R22 IOSTANDARD LVCMOS33 PULLUP true} [get_ports flash_miso_i]
+#set_property -dict {PACKAGE_PIN P21 IOSTANDARD LVCMOS33} [get_ports flash_wp_o ]
+#set_property -dict {PACKAGE_PIN R21 IOSTANDARD LVCMOS33} [get_ports flash_hold_o]
 
 #
 # SDRAM signals
@@ -240,15 +235,11 @@ set_property -dict {PACKAGE_PIN L6 IOSTANDARD LVCMOS33} [get_ports esp_rtr_n_i]
 set_property -dict {PACKAGE_PIN AB6 IOSTANDARD LVCMOS33} [get_ports i2c_scl_io]
 set_property -dict {PACKAGE_PIN Y7 IOSTANDARD LVCMOS33} [get_ports i2c_sda_io]
 
-#MIDI
-#set_property PACKAGE_PIN AA8 [get_ports midi_clkbd]
-#set_property IOSTANDARD LVCMOS33 [get_ports midi_clkbd]
-#set_property PACKAGE_PIN Y8 [get_ports midi_wsbd]
-#set_property IOSTANDARD LVCMOS33 [get_ports midi_wsbd]
-#set_property PACKAGE_PIN AB8 [get_ports midi_dabd]
-#set_property IOSTANDARD LVCMOS33 [get_ports midi_dabd]
-#set_property PACKAGE_PIN AB7 [get_ports midi_out]
-#set_property IOSTANDARD LVCMOS33 [get_ports midi_out]
+##MIDI
+#set_property -dict {PACKAGE_PIN AA8 IOSTANDARD LVCMOS33} [get_ports midi_clkbd]
+#set_property -dict {PACKAGE_PIN Y8 IOSTANDARD LVCMOS33} [get_ports midi_wsbd]
+#set_property -dict {PACKAGE_PIN AB8 IOSTANDARD LVCMOS33} [get_ports midi_dabd]
+#set_property -dict {PACKAGE_PIN AB7 IOSTANDARD LVCMOS33} [get_ports midi_out]
 
 ##EDGE
 #set_property PACKAGE_PIN R2 [get_ports edge_A15]

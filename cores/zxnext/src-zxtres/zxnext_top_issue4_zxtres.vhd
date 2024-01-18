@@ -39,16 +39,14 @@ entity zxnext_top_issue4_zxtres is
       g_version         : unsigned(7 downto 0)  := X"32";   -- 3.02
       g_sub_version     : unsigned(7 downto 0)  := X"01";   -- .01
       --g_board_issue     : unsigned(3 downto 0)  := X"2";     -- issue 4 (see nextreg 0x0F)
-      g_board_issue     : unsigned(3 downto 0)  := X"0";     -- issue 2 (see nextreg 0x0F)
-      g_memory          : unsigned(7 downto 0)  := X"05"    -- 01 - 4Mb (2Mb 16bit) use 2M 8bit lower
-                                                            -- 02 - 1Mb (512k 16bit) use 1M
-                                                            -- 03 - 4Mb (2Mb 16bit) use 2M 8bit upper -- use for RPI0
-                                                            -- 04 - 1Mb (512kb+512kb 8bit) use 1M
-                                                            -- 05 - 2Mb (1Mb 16bit) use 2M
+      g_board_issue     : unsigned(3 downto 0)  := X"0"      -- issue 2 (see nextreg 0x0F)
 );
    port (
       -- Clocks
       clock_50_i        : in    std_logic;
+      -- Leds
+      LED1              : out   std_logic                      := '1'; --zxtres
+      LED2              : out   std_logic                      := '1'; --zxtres
 
       -- SRAM (IS61WV102416FBLL)
       ram_addr_o        : out   std_logic_vector(19 downto 0)  := (others => '0');
@@ -72,13 +70,13 @@ entity zxnext_top_issue4_zxtres is
       sd_mosi_o         : out   std_logic                      := '0';
       sd_miso_i         : in    std_logic;
 
-      -- Flash
-      flash_cs_n_o      : out   std_logic                      := '1';
-      flash_sclk_o      : out   std_logic                      := '0';
-      flash_mosi_o      : out   std_logic                      := '0';
-      flash_miso_i      : in    std_logic;
-      flash_wp_o        : out   std_logic                      := '0';
-      flash_hold_o      : out   std_logic                      := '1';
+--      -- Flash
+--      flash_cs_n_o      : out   std_logic                      := '1';
+--      flash_sclk_o      : out   std_logic                      := '0';
+--      flash_mosi_o      : out   std_logic                      := '0';
+--      flash_miso_i      : in    std_logic;
+--      flash_wp_o        : out   std_logic                      := '0';
+--      flash_hold_o      : out   std_logic                      := '1';
 
       -- Joystick
 --      joyp1_i           : in    std_logic;    --ZXTRES
@@ -168,6 +166,7 @@ entity zxnext_top_issue4_zxtres is
       -- I2C (RTC and HDMI)
       i2c_scl_io        : inout std_logic                      := 'Z';
       i2c_sda_io        : inout std_logic                      := 'Z';
+      
 
 --      -- ESP
       esp_gpio0_io      : inout std_logic                      := 'Z';
@@ -580,12 +579,12 @@ architecture rtl of zxnext_top_issue4_zxtres is
    
    -- zxdos spi flash adaptation
    -- Flash disconected to avoid ZXDOS core updates from ZXNEXT
---   signal flash_cs_n_o      : std_logic                      := '1';
---   signal flash_sclk_o      : std_logic                      := '0';
---   signal flash_mosi_o      : std_logic                      := '0';
---   signal flash_miso_i      : std_logic;
---   signal flash_wp_o        : std_logic                      := '0';
---   signal flash_hold_o      : std_logic                      := '1';
+   signal flash_cs_n_o      : std_logic                      := '1';
+   signal flash_sclk_o      : std_logic                      := '0';
+   signal flash_mosi_o      : std_logic                      := '0';
+   signal flash_miso_i      : std_logic;
+   signal flash_wp_o        : std_logic                      := '0';
+   signal flash_hold_o      : std_logic                      := '1';
 	
    -- zxdos Joystick adaptation
    signal joyp1_i           : std_logic;
@@ -619,6 +618,7 @@ architecture rtl of zxnext_top_issue4_zxtres is
    signal zxn_spi_sck            : std_logic;
    signal zxn_spi_mosi           : std_logic;
    signal sd_miso_q              : std_logic := '0';
+   signal zxtres_sdled           : std_logic_vector(7 downto 0);
    
    signal zxn_spi_ss_flash_n     : std_logic;
    signal flash_miso_q           : std_logic := '0';
@@ -760,11 +760,13 @@ architecture rtl of zxnext_top_issue4_zxtres is
 --   signal    i2c_scl_io        : std_logic                      := 'Z';
 --   signal    i2c_sda_io        : std_logic                      := 'Z';
 
-      --zxdos ESP omit
+--      --zxdos ESP omit
 --   signal    esp_gpio0_io      : std_logic                      := 'Z';
    signal    esp_gpio2_io      : std_logic                      := 'Z';
---   signal    esp_rx_i          : std_logic;
+--   signal    esp_rx_i          : std_logic                      := '1';
 --   signal    esp_tx_o          : std_logic                      := '1';
+--   signal    esp_cts_n_o       : std_logic                      := '1';
+--   signal    esp_rtr_n_i       : std_logic                    := 'Z';
 
 --      --zxdos PI GPIO not used
    signal    accel_io          : std_logic_vector(27 downto 0)  := (others => 'Z');
@@ -774,12 +776,25 @@ architecture rtl of zxnext_top_issue4_zxtres is
 
    
 begin
-
+   
+   --  ZXTRES extras/leds
 --   adc_control_o <= 'Z';   --zxtres
    
 --   extras_o <= 'Z';   --zxtres
 --   extras_2_io <= 'Z';   --zxtres
 --   extras_3_io <= 'Z';   --zxtres
+--   esp_rx_i <= '1';
+--   esp_rtr_n_i <= 'Z';
+   
+   LED1 <= reset;
+   LED2 <= zxtres_sdled(4);
+   process (CLK_28)
+   begin
+      if rising_edge(CLK_28) then
+         zxtres_sdled <= zxtres_sdled + sd_miso_q;
+      end if;
+   end process;
+   
 
    ------------------------------------------------------------
    -- SYNCHRONIZE ASYNCHRONOUS INPUTS
@@ -985,7 +1000,7 @@ begin
       end if;
    end process;
    
-   process (reset_poweron, reset_state, zxn_reset_soft, expbus_reset, reset_counter_done)
+   process (reset_poweron, reset_state, zxn_reset_soft, zxn_reset_hard, expbus_reset, reset_counter_done)
    begin
       if reset_poweron = '1' then
          reset_state_next <= S_RESET_HARD_0;
@@ -994,6 +1009,8 @@ begin
             when S_RESET_IDLE =>
                if zxn_reset_soft = '1' or expbus_reset = '1' then
                   reset_state_next <= S_RESET_SOFT_0;
+               elsif zxn_reset_hard = '1' then --zxtres
+                  reset_state_next <= S_RESET_HARD_0; --zxtres   
                else
                   reset_state_next <= S_RESET_IDLE;
                end if;
