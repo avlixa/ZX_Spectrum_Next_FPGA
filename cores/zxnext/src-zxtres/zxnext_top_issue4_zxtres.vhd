@@ -38,8 +38,8 @@ entity zxnext_top_issue4_zxtres is
       g_video_def       : unsigned(2 downto 0)  := "000";   -- video mode default (0-6, vga-0 & vga-1 also produce hdmi)
       g_version         : unsigned(7 downto 0)  := X"32";   -- 3.02
       g_sub_version     : unsigned(7 downto 0)  := X"01";   -- .01
-      --g_board_issue     : unsigned(3 downto 0)  := X"2";     -- issue 4 (see nextreg 0x0F)
-      g_board_issue     : unsigned(3 downto 0)  := X"0"      -- issue 2 (see nextreg 0x0F)
+      g_board_issue     : unsigned(3 downto 0)  := X"2"     -- issue 4 (see nextreg 0x0F)
+      --g_board_issue     : unsigned(3 downto 0)  := X"0"      -- issue 2 (see nextreg 0x0F)
 );
    port (
       -- Clocks
@@ -152,16 +152,16 @@ entity zxnext_top_issue4_zxtres is
 --      hdmi_p_o          : out   std_logic_vector(3 downto 0);
 --      hdmi_n_o          : out   std_logic_vector(3 downto 0);
       
---      -- DISPLAYPORT
---      dp_tx_lane_p_o      : out   std_logic                      := '1';
---      dp_tx_lane_n_o      : out   std_logic                      := '1';
---      dp_refclk_p_i       : in    std_logic;
---      dp_refclk_n_i       : in    std_logic;
---      dp_tx_hp_detect_i   : in    std_logic;
---      dp_tx_auxch_tx_p_io : inout std_logic                      := 'Z';
---      dp_tx_auxch_tx_n_io : inout std_logic                      := 'Z';
---      dp_tx_auxch_rx_p_io : inout std_logic                      := 'Z';
---      dp_tx_auxch_rx_n_io : inout std_logic                      := 'Z';
+      -- DISPLAYPORT
+      dp_tx_lane_p_o      : out   std_logic                      := '1';
+      dp_tx_lane_n_o      : out   std_logic                      := '1';
+      dp_refclk_p_i       : in    std_logic;
+      dp_refclk_n_i       : in    std_logic;
+      dp_tx_hp_detect_i   : in    std_logic;
+      dp_tx_auxch_tx_p_io : inout std_logic                      := 'Z';
+      dp_tx_auxch_tx_n_io : inout std_logic                      := 'Z';
+      dp_tx_auxch_rx_p_io : inout std_logic                      := 'Z';
+      dp_tx_auxch_rx_n_io : inout std_logic                      := 'Z';
 
       -- I2C (RTC and HDMI)
       i2c_scl_io        : inout std_logic                      := 'Z';
@@ -774,11 +774,31 @@ architecture rtl of zxnext_top_issue4_zxtres is
 --      --zxdos Vacant pins
 --   signal    extras_io         : std_logic := 'Z';
 
+   --zxtres pines not available: XADC Analog to Digital Conversion
+   signal    XADC_VP          : std_logic                      := '1';
+   signal    XADC_VN          : std_logic                      := '0';
+      
+   signal    XADC_15P          : std_logic                      := '1';
+   signal    XADC_15N          : std_logic                      := '0';
+      
+   signal    XADC_7P          : std_logic                       := '1';
+   signal    XADC_7N          : std_logic                       := '0';
+      
+   signal    adc_control_o          : std_logic                 := 'Z';   -- J22 pin 3
+
+
    
 begin
    
    --  ZXTRES extras/leds
---   adc_control_o <= 'Z';   --zxtres
+   adc_control_o <= 'Z';   --zxtres
+
+   xadc_drdy <= '0';   --zxtres
+   xadc_do <= (others => '0');   --zxtres
+      
+   xadc_busy <= '0';   --zxtres
+   xadc_eoc <= '0';   --zxtres
+   xadc_eos <= '0';   --zxtres
    
 --   extras_o <= 'Z';   --zxtres
 --   extras_2_io <= 'Z';   --zxtres
@@ -1678,6 +1698,11 @@ begin
 	           else ("0000" & rgb_y_sign (9 downto 8)) when (vga_grey = "0100") --orange
 				  else (others=>'0'); --green
 
+
+   rgb_r_wrap_i <= rgb_15(8 downto 6) & rgb_15(8 downto 6) & rgb_15(8 downto 7);
+   rgb_g_wrap_i <= rgb_15(5 downto 3) & rgb_15(5 downto 3) & rgb_15(5 downto 4);
+   rgb_b_wrap_i <= rgb_15(2 downto 0) & rgb_15(2 downto 0) & rgb_15(2 downto 1);
+
 --   rgb_r_wrap_i <= rgb_r_o_prev(9 downto 2) when (vga_grey = "0001") 
 --	           else rgb_y_sign (9 downto 2) when (vga_grey = "0010") --mono
 --	           else rgb_y_sign (9 downto 2) when (vga_grey = "0100") --orange
@@ -1692,6 +1717,7 @@ begin
 --	           else rgb_y_sign (9 downto 2) when (vga_grey = "0010") --mono
 --	           else ("0000" & rgb_y_sign (9 downto 6)) when (vga_grey = "0100") --orange
 --				  else (others=>'0'); --green
+
     rgb_r_o <= rgb_r_o_aux & rgb_r_o_aux(5 downto 4);
     rgb_g_o <= rgb_g_o_aux & rgb_g_o_aux(5 downto 4);
     rgb_b_o <= rgb_b_o_aux & rgb_b_o_aux(5 downto 4);
@@ -2867,101 +2893,101 @@ begin
   );
     
 
---   zxtres_wrapper_imp : entity work.zxtres_wrapper
---   generic map
---   (
---      CLKVIDEO         => 14,  --Freq clk video in MHz
---      HSTART           => 104,
---      VSTART           => 36
---   ) 
---   --104 - 36 -centrado ambos. hay modos que pierden borde arriba abajo (guia)
---   --228 - 48 -desplazado izda , poco borde arriba
---   --96  - 18 -casi centrado 5cm-4cm, sin borde abajo 
---   port map
---   ( clkvideo => CLK_14, 
---     enclkvideo => '1',
---     clkpalntsc => '0',
---     reset_n => not reset_poweron,
---     reboot_fpga => '0',
---     --sram
---      sram_addr_in => (others => '1'),
---      sram_we_n_in => '1',
---      sram_oe_n_in => '1',
---      sram_data_to_chip => (others => '1'),
---      sram_data_from_chip => open,
---     ------------------------
---      sram_addr_out => open,
---      sram_we_n_out => open,
---      sram_oe_n_out => open,
---      sram_ub_n_out => open,
---      sram_lb_n_out => open,
---      sram_data => open,
---      poweron_reset => open,
---      config_vga_on => open,
---      config_scanlines_off => open,
---      -- output video configuration 
---      video_output_sel => zxn_video_scandouble_en,   -- 0: RGB 15kHz + DP   1: VGA + DP pantalla azul
---      disable_scanlines => '1',
---      monochrome_sel => "00",
---      interlaced_image => '0',
---      ad724_modo => '0',
---      ad724_clken => '0',
---      -- input signal
---      ri => rgb_r_wrap_i,
---      gi => rgb_g_wrap_i,
---      bi => rgb_b_wrap_i,
---      hsync_ext_n => zxn_rgb_hs_n,
---      vsync_ext_n => zxn_rgb_vs_n,
---      csync_ext_n => zxn_rgb_cs_n,      
---      -- audio input
---      audio_l => zxn_audio_L_wrap,
---      audio_r => zxn_audio_R_wrap,
---      -- video output
---      ro => rgb_r_wrap_o,
---      go => rgb_g_wrap_o,
---      bo => rgb_b_wrap_o,
---      hsync => hsync_o,
---      vsync => vsync_o,
---      --i2s audio output
---      sd_audio_l => open,
---      sd_audio_r => open,
---      i2s_bclk => i2s_bclk_o,
---      i2s_lrclk => i2s_lrclk_o,
---      i2s_dout => i2s_dout_o,
---      --joystick signal
---      joy_data => '0',
---      joy_latch_megadrive => '0',
---      joy_clk => '0',
---      joy_load_n => open,
---      joy1down => open,
---      joy1left => open,
---      joy1right => open,
---      joy1fire1 => open,
---      joy1fire2 => open,
---      joy1fire3 => open,
---      joy1start => open,
---      joy2up => open,
---      joy2down => open,
---      joy2left => open,
---      joy2right => open,
---      joy2fire1 => open,
---      joy2fire2 => open,
---      joy2fire3 => open,
---      joy2start => open,
---      --direct port signal
---      dp_tx_lane_p => dp_tx_lane_p_o,
---      dp_tx_lane_n => dp_tx_lane_n_o,
---      dp_refclk_p => dp_refclk_p_i,
---      dp_refclk_n => dp_refclk_n_i,
---      dp_tx_hp_detect => dp_tx_hp_detect_i,
---      dp_tx_auxch_tx_p => dp_tx_auxch_tx_p_io,
---      dp_tx_auxch_tx_n => dp_tx_auxch_tx_n_io,
---      dp_tx_auxch_rx_p => dp_tx_auxch_rx_p_io,
---      dp_tx_auxch_rx_n => dp_tx_auxch_rx_n_io,
---      --direct port debugging
---      dp_ready => open,
---      dp_heartbeat => open
---   );
+   zxtres_wrapper_imp : entity work.zxtres_wrapper
+   generic map
+   (
+      CLKVIDEO         => 14,  --Freq clk video in MHz
+      HSTART           => 104,
+      VSTART           => 36
+   ) 
+   --104 - 36 -centrado ambos. hay modos que pierden borde arriba abajo (guia)
+   --228 - 48 -desplazado izda , poco borde arriba
+   --96  - 18 -casi centrado 5cm-4cm, sin borde abajo 
+   port map
+   ( clkvideo => CLK_14, 
+     enclkvideo => '1',
+     clkpalntsc => '0',
+     reset_n => not reset_poweron,
+     reboot_fpga => '0',
+     --sram
+      sram_addr_in => (others => '1'),
+      sram_we_n_in => '1',
+      sram_oe_n_in => '1',
+      sram_data_to_chip => (others => '1'),
+      sram_data_from_chip => open,
+     ------------------------
+      sram_addr_out => open,
+      sram_we_n_out => open,
+      sram_oe_n_out => open,
+      sram_ub_n_out => open,
+      sram_lb_n_out => open,
+      sram_data => open,
+      poweron_reset => open,
+      config_vga_on => open,
+      config_scanlines_off => open,
+      -- output video configuration 
+      video_output_sel => '0', --zxn_video_scandouble_en,   -- 0: RGB 15kHz + DP   1: VGA + DP pantalla azul
+      disable_scanlines => '1',
+      monochrome_sel => "00",
+      interlaced_image => '0',
+      ad724_modo => '0',
+      ad724_clken => '0',
+      -- input signal
+      ri => rgb_r_wrap_i,
+      gi => rgb_g_wrap_i,
+      bi => rgb_b_wrap_i,
+      hsync_ext_n => zxn_rgb_hs_n,
+      vsync_ext_n => zxn_rgb_vs_n,
+      csync_ext_n => zxn_rgb_cs_n,      
+      -- audio input
+      audio_l => zxn_audio_L_wrap,
+      audio_r => zxn_audio_R_wrap,
+      -- video output
+      ro => rgb_r_wrap_o,
+      go => rgb_g_wrap_o,
+      bo => rgb_b_wrap_o,
+      hsync => open, --hsync_o,
+      vsync => open, --vsync_o,
+      --i2s audio output
+      sd_audio_l => open,
+      sd_audio_r => open,
+      i2s_bclk => open, --i2s_bclk_o,
+      i2s_lrclk => open, --i2s_lrclk_o,
+      i2s_dout => open, --i2s_dout_o,
+      --joystick signal
+      joy_data => '0',
+      joy_latch_megadrive => '0',
+      joy_clk => open,
+      joy_load_n => open,
+      joy1down => open,
+      joy1left => open,
+      joy1right => open,
+      joy1fire1 => open,
+      joy1fire2 => open,
+      joy1fire3 => open,
+      joy1start => open,
+      joy2up => open,
+      joy2down => open,
+      joy2left => open,
+      joy2right => open,
+      joy2fire1 => open,
+      joy2fire2 => open,
+      joy2fire3 => open,
+      joy2start => open,
+      --direct port signal
+      dp_tx_lane_p => dp_tx_lane_p_o,
+      dp_tx_lane_n => dp_tx_lane_n_o,
+      dp_refclk_p => dp_refclk_p_i,
+      dp_refclk_n => dp_refclk_n_i,
+      dp_tx_hp_detect => dp_tx_hp_detect_i,
+      dp_tx_auxch_tx_p => dp_tx_auxch_tx_p_io,
+      dp_tx_auxch_tx_n => dp_tx_auxch_tx_n_io,
+      dp_tx_auxch_rx_p => dp_tx_auxch_rx_p_io,
+      dp_tx_auxch_rx_n => dp_tx_auxch_rx_n_io,
+      --direct port debugging
+      dp_ready => open,
+      dp_heartbeat => open
+   );
    
 --   rgb_r_o <= rgb_r_wrap_o(7 downto 2);
 --   rgb_g_o <= rgb_g_wrap_o(7 downto 2);
